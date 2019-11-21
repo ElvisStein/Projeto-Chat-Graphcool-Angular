@@ -10,7 +10,7 @@
           [containerStyles]="{width: '40px', height: '40px', margin: 0}">
         </app-avatar>
         <h3 matLine>{{ user.name }}</h3>
-        <p matLine>Member since {{ user.createdAt | date: 'dd/MM/yyyy' }}</p>
+        <p matLine>Membro desde: {{ user.createdAt | date: 'dd/MM/yyyy' }}</p>
       </a>
     </ng-container>
   </ng-container>
@@ -28,6 +28,6 @@
 <ng-template #noUsers>
   <app-no-record
     icon="group"
-    title="No registered users.">
+    title="Nenhum usuário registrado.">
   </app-no-record>
 </ng-template>

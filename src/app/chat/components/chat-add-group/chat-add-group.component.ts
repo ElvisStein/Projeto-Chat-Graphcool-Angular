@@ -12,7 +12,6 @@ import { FileService } from '../../../core/services/file.service';
 import { User } from '../../../core/models/user.model';
 import { UserService } from '../../../core/services/user.service';
 
-
 @Component({
   selector: 'app-chat-add-group',
   templateUrl: './chat-add-group.component.html',
@@ -21,7 +20,7 @@ import { UserService } from '../../../core/services/user.service';
 export class ChatAddGroupComponent implements OnDestroy, OnInit {
 
   newGroupForm: FormGroup;
-  selectedImage: File; // Aula 303 - Preview para foto do grupo
+  selectedImage: File;
   users$: Observable<User[]>;
   private subscriptions: Subscription[] = [];
 
@@ -56,13 +55,14 @@ export class ChatAddGroupComponent implements OnDestroy, OnInit {
   private createForm(): void {
     this.newGroupForm = this.fb.group({
       title: this.fb.control('', [Validators.required, Validators.minLength(3)]),
-      // fb(FormBuilder quando vc sabe a quantdade de validadores)
-      members: this.fb.array([], [Validators.required])
+      members: this.fb.array([], Validators.required)
     });
   }
 
-  get title(): FormControl { return this.newGroupForm.get('title') as FormControl; }
-  get members(): FormArray { return this.newGroupForm.get('members') as FormArray; }
+  // tslint:disable-next-line:no-angle-bracket-type-assertion
+  get title(): FormControl { return <FormControl> this.newGroupForm.get('title'); }
+  // tslint:disable-next-line:no-angle-bracket-type-assertion
+  get members(): FormArray { return <FormArray> this.newGroupForm.get('members'); }
 
   addMember(user: User): void {
     this.members.push(this.fb.group(user));
@@ -72,7 +72,7 @@ export class ChatAddGroupComponent implements OnDestroy, OnInit {
     this.members.removeAt(index);
   }
 
-  onSelectImage(event: Event): void {   // Aula 303 - Preview para foto do grupo
+  onSelectImage(event: Event): void {
     // tslint:disable-next-line:no-angle-bracket-type-assertion
     const file = (<HTMLInputElement> event.target).files[0];
     this.selectedImage = file;

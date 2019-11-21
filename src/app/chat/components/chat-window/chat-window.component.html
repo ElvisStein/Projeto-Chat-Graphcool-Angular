@@ -25,7 +25,7 @@
   <ng-template #noMessages>
     <app-no-record
       icon="message"
-      title="No messages.">
+      title="Nenhuma mensagem.">
     </app-no-record>
   </ng-template>
 
@@ -33,7 +33,7 @@
 
 <mat-toolbar class="fixed-bottom" color="primary">
   <mat-toolbar-row>
-    <input class="input" type="text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Type a message">
+    <input class="input" type="text" [(ngModel)]="newMessage" (keyup.enter)="sendMessage()" placeholder="Digite uma mensagem">
     <span class="spacer"></span>
     <button mat-icon-button (click)="sendMessage()">
       <mat-icon>send</mat-icon>
